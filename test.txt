@@ -1,0 +1,13 @@
+Julia Lin 
+jylin@scu.edu
+
+To run the program:
+	Make BMP file: ./makebmp test.bmp
+	Embed text into a BMP file: ./embed test.bmp gettysburg.txt
+	Extract text from a BMP file: ./extract embedded_test.bmp gettysburg.txt
+	
+Embed:
+Program takes in a BMP file and a text file. Program will embed each character's bits in pixels' 2 LSBs. This process is done through bitwise operations. The bit to be modified in the pixel is first cleared. Then the character's bits are shifted to the right and ANDed with 1, to isolate the bit we want. Then the character's bits are left shifted to the correct position and ORed with the pixel's bits to successfuly put the character's bit within the pixel's bits, without changing the pixel's other bits.
+
+Extract:
+Program takes in the embedded BMP file and the original text file. Program first puts the pixel's bits inside an integer array. Then we put the desired pixel bits into another integer array (that represents the character's bits). Once all 8 bits of a character have been extracted (from 4 different pixels), the the integer array ORs each index with char letter. This successfully creates a character from the embedded bits. The character is then added to a string for the extracted text. The end of the program checks if the extracted text is the same as the original text file. 
